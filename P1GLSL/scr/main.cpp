@@ -34,20 +34,9 @@ int main(int argc, char** argv)
 	//Se ajusta la cámara
 	//Si no se da valor se cojen valores por defecto
 	glm::mat4 view = glm::mat4(1.0f);
-	glm::mat4 proj = glm::mat4(0.0f);
 
 	view[3].z = -6.0f;
 
-	float n = 1.0f;
-	float f = 10.0f;
-
-	proj[0].x = 1 / glm::tan(glm::radians(30.0f));
-	proj[1].y = 1 / glm::tan(glm::radians(30.0f));
-	proj[2].z = -(f + n) / (f - n);
-	proj[3].z = -(2.0f * f * n) / (f - n);
-	proj[2].w = -1.0f;
-
-	IGlib::setProjMat(proj);
 	IGlib::setViewMat(view);
 
 
@@ -71,7 +60,16 @@ int main(int argc, char** argv)
 
 void resizeFunc(int width, int height)
 {
-	//Ajusta el aspect ratio al tamaño de la venta
+	float aspectRatio = (float)width / (float)height;
+
+	glm::mat4 proj = glm::mat4(0.0f);
+
+	float n = 1.0f;
+	float f = 10.0f;
+
+	proj = glm::perspective(glm::radians(60.0f), aspectRatio, n, f);
+
+	IGlib::setProjMat(proj);
 }
 
 void idleFunc()
