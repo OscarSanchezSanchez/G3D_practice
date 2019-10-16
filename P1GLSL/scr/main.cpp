@@ -8,7 +8,7 @@
 
 
 //Idenficadores de los objetos de la escena
-int objId =-1;
+int objId, objId_new =-1;
 
 //Declaración de CB
 void resizeFunc(int width, int height);
@@ -21,7 +21,7 @@ void mouseMotionFunc(int x, int y);
 int main(int argc, char** argv)
 {
 	std::locale::global(std::locale("spanish"));// acentos ;)
-	if (!IGlib::init("../shaders_P1/shader.v4.vert", "../shaders_P1/shader.v4.frag"))
+	if (!IGlib::init("../shaders_P1/shader.v3.vert", "../shaders_P1/shader.v3.frag"))
 		return -1;
    
 	//CBs
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 	//Si no se da valor se cojen valores por defecto
 	glm::mat4 view = glm::mat4(1.0f);
 
-	view[3].z = -6.0f;
+	view[3].z = -9.0f;
 
 	IGlib::setViewMat(view);
 
@@ -45,13 +45,15 @@ int main(int argc, char** argv)
 	objId = IGlib::createObj(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex, 
 			cubeVertexPos, cubeVertexColor, cubeVertexNormal,cubeVertexTexCoord, cubeVertexTangent);
 		
-	glm::mat4 modelMat = glm::mat4(1.0f);
+	glm::mat4 modelMat = glm::mat4(2.0f);
 	IGlib::setModelMat(objId, modelMat);
 	//Incluir texturas aquí.
 	IGlib::addColorTex(objId, "../img/color.png");
 	
-
-	
+	//create second object
+	objId_new = IGlib::createObj(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex,
+		cubeVertexPos, cubeVertexColor, cubeVertexNormal, cubeVertexTexCoord, cubeVertexTangent);
+	IGlib::setModelMat(objId_new, modelMat);
 	//Mainloop
 	IGlib::mainLoop();
 	IGlib::destroy();
@@ -65,7 +67,7 @@ void resizeFunc(int width, int height)
 	glm::mat4 proj = glm::mat4(0.0f);
 
 	float n = 1.0f;
-	float f = 10.0f;
+	float f = 15.0f;
 
 	proj = glm::perspective(glm::radians(60.0f), aspectRatio, n, f);
 
@@ -81,6 +83,15 @@ void idleFunc()
 	model = glm::rotate(model, ang, glm::vec3(1, 1, 0));
 	IGlib::setModelMat(objId, model);
 
+	glm::mat4 model2(1.0f);
+	model2 = glm::rotate(model2, ang, glm::vec3(4, 0, -0.01));
+	IGlib::setModelMat(objId_new, model2);
+
+	model2 = glm::translate(model2, glm::vec3(0, 3, 0));
+	IGlib::setModelMat(objId_new, model2);
+
+	model2 = glm::rotate(model2, ang, glm::vec3(1, 0, 0));
+	IGlib::setModelMat(objId_new, model2);
 
 }
 
