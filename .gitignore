@@ -6,7 +6,7 @@ P1GLSL/.vs/P1GLSL/v16/Browse.VC.db
 
 P1GLSL/.vs/P1GLSL/v16/Browse.VC.opendb
 
-P1GLSL/.vs/P1GLSL/v16/ipch/AutoPCH/16e404a1e775af28/MAIN.ipch
+P1GLSL/.vs/*
 
 P1GLSL/Debug/main.obj
 
@@ -35,3 +35,8 @@ P1GLSL/Debug/P1GLSL.tlog/P1GLSL.lastbuildstate
 P1GLSL/Debug/vc142.idb
 
 P1GLSL/Debug/vc142.pdb
+
+P1GLSL/Debug/*
+
+P1GLSL/Release/*
+*.obj
