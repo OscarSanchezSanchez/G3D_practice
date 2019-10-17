@@ -10,12 +10,15 @@
 //Idenficadores de los objetos de la escena
 int objId, objId_new =-1;
 
-//Declaración de CB
+//Declaraciï¿½n de CB
 void resizeFunc(int width, int height);
 void idleFunc();
 void keyboardFunc(unsigned char key, int x, int y);
 void mouseFunc(int button, int state, int x, int y);
 void mouseMotionFunc(int x, int y);
+
+//Matriz de proyeccion
+glm::mat4 proj = glm::mat4(0.0f);
 
 
 int main(int argc, char** argv)
@@ -31,12 +34,22 @@ int main(int argc, char** argv)
 	IGlib::setMouseCB(mouseFunc);
   	IGlib::setMouseMoveCB(mouseMotionFunc);
 
-	//Se ajusta la cámara
+	//Se ajusta la cï¿½mara
 	//Si no se da valor se cojen valores por defecto
 	glm::mat4 view = glm::mat4(1.0f);
 
 	view[3].z = -9.0f;
 
+	float n = 1.0f;
+	float f = 10.0f;
+
+	proj[0].x = 1 / glm::tan(glm::radians(30.0f));
+	proj[1].y = 1 / glm::tan(glm::radians(30.0f));
+	proj[2].z = -(f + n) / (f - n);
+	proj[3].z = -(2.0f * f * n) / (f - n);
+	proj[2].w = -1.0f;
+
+	IGlib::setProjMat(proj);
 	IGlib::setViewMat(view);
 
 
@@ -47,7 +60,7 @@ int main(int argc, char** argv)
 		
 	glm::mat4 modelMat = glm::mat4(2.0f);
 	IGlib::setModelMat(objId, modelMat);
-	//Incluir texturas aquí.
+	//Incluir texturas aquï¿½.
 	IGlib::addColorTex(objId, "../img/color.png");
 	
 	//create second object
@@ -64,12 +77,7 @@ void resizeFunc(int width, int height)
 {
 	float aspectRatio = (float)width / (float)height;
 
-	glm::mat4 proj = glm::mat4(0.0f);
-
-	float n = 1.0f;
-	float f = 15.0f;
-
-	proj = glm::perspective(glm::radians(60.0f), aspectRatio, n, f);
+	proj[0].x = 1 / (glm::tan(glm::radians(30.0f)) * aspectRatio);
 
 	IGlib::setProjMat(proj);
 }
@@ -103,15 +111,15 @@ void keyboardFunc(unsigned char key, int x, int y)
 void mouseFunc(int button, int state, int x, int y)
 {
 	if (state==0)
-		std::cout << "Se ha pulsado el botón ";
+		std::cout << "Se ha pulsado el botï¿½n ";
 	else
-		std::cout << "Se ha soltado el botón ";
+		std::cout << "Se ha soltado el botï¿½n ";
 	
-	if (button == 0) std::cout << "de la izquierda del ratón " << std::endl;
-	if (button == 1) std::cout << "central del ratón " << std::endl;
-	if (button == 2) std::cout << "de la derecha del ratón " << std::endl;
+	if (button == 0) std::cout << "de la izquierda del ratï¿½n " << std::endl;
+	if (button == 1) std::cout << "central del ratï¿½n " << std::endl;
+	if (button == 2) std::cout << "de la derecha del ratï¿½n " << std::endl;
 
-	std::cout << "en la posición " << x << " " << y << std::endl << std::endl;
+	std::cout << "en la posiciï¿½n " << x << " " << y << std::endl << std::endl;
 }
 
 void mouseMotionFunc(int x, int y)
