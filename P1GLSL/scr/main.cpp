@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 	view[3].z = -9.0f;
 
 	float n = 1.0f;
-	float f = 10.0f;
+	float f = 15.0f;
 
 	proj[0].x = 1 / glm::tan(glm::radians(30.0f));
 	proj[1].y = 1 / glm::tan(glm::radians(30.0f));
