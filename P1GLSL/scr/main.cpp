@@ -17,6 +17,9 @@ void keyboardFunc(unsigned char key, int x, int y);
 void mouseFunc(int button, int state, int x, int y);
 void mouseMotionFunc(int x, int y);
 
+//Matriz de proyeccion
+glm::mat4 proj = glm::mat4(0.0f);
+
 
 int main(int argc, char** argv)
 {
@@ -37,6 +40,16 @@ int main(int argc, char** argv)
 
 	view[3].z = -6.0f;
 
+	float n = 1.0f;
+	float f = 10.0f;
+
+	proj[0].x = 1 / glm::tan(glm::radians(30.0f));
+	proj[1].y = 1 / glm::tan(glm::radians(30.0f));
+	proj[2].z = -(f + n) / (f - n);
+	proj[3].z = -(2.0f * f * n) / (f - n);
+	proj[2].w = -1.0f;
+
+	IGlib::setProjMat(proj);
 	IGlib::setViewMat(view);
 
 
@@ -62,12 +75,7 @@ void resizeFunc(int width, int height)
 {
 	float aspectRatio = (float)width / (float)height;
 
-	glm::mat4 proj = glm::mat4(0.0f);
-
-	float n = 1.0f;
-	float f = 10.0f;
-
-	proj = glm::perspective(glm::radians(60.0f), aspectRatio, n, f);
+	proj[0].x = 1 / (glm::tan(glm::radians(30.0f)) * aspectRatio);
 
 	IGlib::setProjMat(proj);
 }
