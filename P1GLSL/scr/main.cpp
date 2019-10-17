@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 	glm::mat4 modelMat = glm::mat4(2.0f);
 	IGlib::setModelMat(objId, modelMat);
 	//Incluir texturas aqu�.
-	IGlib::addColorTex(objId, "../img/color.png");
+	IGlib::addColorTex(objId, "../img/diamond_ore.png");
 	
 	//create second object
 	objId_new = IGlib::createObj(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex,
