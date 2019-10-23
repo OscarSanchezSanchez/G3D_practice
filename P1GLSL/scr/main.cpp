@@ -28,6 +28,9 @@ glm::mat4 proj = glm::mat4(0.0f);
 //Velocidad de movimeinto
 const float MOVEMENT_SPEED = 0.1f;
 
+//Velocidad de rotación
+const float ROTATION_SPEED = 1.0f;
+
 
 int main(int argc, char** argv)
 {
@@ -128,10 +131,20 @@ void keyboardFunc(unsigned char key, int x, int y)
 		view[3].x -= MOVEMENT_SPEED;
 		IGlib::setViewMat(view);
 		break;
-	case 'q':
-		break;
-	case 'e':
-		break;
+	//case 'q':
+	//	view[0].x = glm::cos(glm::radians(45.0f));
+	//	view[2].x = glm::sin(glm::radians(45.0f));
+	//	view[0].z = -glm::sin(glm::radians(45.0f));
+	//	view[2].x = glm::cos(glm::radians(45.0f));
+	//	IGlib::setViewMat(view);
+	//	break;
+	//case 'e':
+	//	view[0].x = glm::cos(glm::radians(-45.0f));
+	//	view[2].x = glm::sin(glm::radians(-45.0f));
+	//	view[0].z = -glm::sin(glm::radians(-45.0f));
+	//	view[2].x = glm::cos(glm::radians(-45.0f));
+	//	IGlib::setViewMat(view);
+	//	break;
 	}
 
 }
