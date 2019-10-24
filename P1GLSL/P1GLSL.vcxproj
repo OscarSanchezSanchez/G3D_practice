@@ -20,8 +20,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\shaders_P1\shader.apartado4b.vert" />
+    <None Include="..\shaders_P1\shader.apartado4b.frag" />
     <None Include="..\shaders_P1\shader.v0.frag" />
     <None Include="..\shaders_P1\shader.v0.vert" />
+    <None Include="..\shaders_P1\shader.v1.frag" />
+    <None Include="..\shaders_P1\shader.v1.vert" />
+    <None Include="..\shaders_P1\shader.v2.frag" />
+    <None Include="..\shaders_P1\shader.v2.vert" />
+    <None Include="..\shaders_P1\shader.v3.frag" />
+    <None Include="..\shaders_P1\shader.v3.vert" />
+    <None Include="..\shaders_P1\shader.v4.frag" />
+    <None Include="..\shaders_P1\shader.v4.vert" />
     <None Include="..\shaders_P1\shader_allvariables.frag" />
     <None Include="..\shaders_P1\shader_allvariables.vert" />
   </ItemGroup>

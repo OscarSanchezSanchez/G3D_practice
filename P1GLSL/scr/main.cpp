@@ -24,7 +24,7 @@ glm::mat4 proj = glm::mat4(0.0f);
 int main(int argc, char** argv)
 {
 	std::locale::global(std::locale("spanish"));// acentos ;)
-	if (!IGlib::init("../shaders_P1/shader.v3.vert", "../shaders_P1/shader.v3.frag"))
+	if (!IGlib::init("../shaders_P1/shader.apartado4b.vert", "../shaders_P1/shader.apartado4b.frag"))
 		return -1;
    
 	//CBs
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 	glm::mat4 modelMat = glm::mat4(2.0f);
 	IGlib::setModelMat(objId, modelMat);
 	//Incluir texturas aqu�.
-	IGlib::addColorTex(objId, "../img/diamond_ore.png");
+	IGlib::addColorTex(objId, "../img/lapis.png");
 	
 	//create second object
 	objId_new = IGlib::createObj(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex,
