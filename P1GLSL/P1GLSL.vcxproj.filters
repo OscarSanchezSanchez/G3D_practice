@@ -31,5 +31,35 @@
     <None Include="..\shaders_P1\shader.v0.vert">
       <Filter>shaders</Filter>
     </None>
+    <None Include="..\shaders_P1\shader.v1.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v1.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v2.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v2.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v3.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v3.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v4.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.v4.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.apartado4b.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders_P1\shader.apartado4b.frag">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
