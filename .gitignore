@@ -40,3 +40,5 @@ P1GLSL/Debug/*
 
 P1GLSL/Release/*
 *.obj
+
+P1GLSL/Release/

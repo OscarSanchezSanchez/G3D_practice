@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 	glm::mat4 modelMat = glm::mat4(2.0f);
 	IGlib::setModelMat(objId, modelMat);
 	//Incluir texturas aqu�.
-	IGlib::addColorTex(objId, "../img/lapis.png");
+	IGlib::addColorTex(objId, "../img/triforceSword.png");
 	
 	//create second object
 	objId_new = IGlib::createObj(cubeNTriangleIndex, cubeNVertex, cubeTriangleIndex,
@@ -92,13 +92,13 @@ void idleFunc()
 	IGlib::setModelMat(objId, model);
 
 	glm::mat4 model2(1.0f);
-	model2 = glm::rotate(model2, ang, glm::vec3(4, 0, -0.01));
+	model2 = glm::rotate(model2, ang, glm::vec3(0, 4, -0.01));
 	IGlib::setModelMat(objId_new, model2);
 
-	model2 = glm::translate(model2, glm::vec3(0, 3, 0));
+	model2 = glm::translate(model2, glm::vec3(3, 0, 0));
 	IGlib::setModelMat(objId_new, model2);
 
-	model2 = glm::rotate(model2, ang, glm::vec3(1, 0, 0));
+	model2 = glm::rotate(model2, ang, glm::vec3(0, 1, 0));
 	IGlib::setModelMat(objId_new, model2);
 
 }

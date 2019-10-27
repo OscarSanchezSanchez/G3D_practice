@@ -14,11 +14,7 @@ void main()
 	outColor = texture(colorTex,tc);
 	float r = pow((tc.x - 0.5),2);
 	float s = pow((tc.y - 0.5),2);
-	if(r+s < 0.2) //esto me gustaria cambiarlo por lessThan
-	{
-		outColor = texture(colorTex,tc);
-	}
-	else
+	if(r+s > 0.2) //esto me gustaria cambiarlo por lessThan
 	{
 		discard;
 	}
