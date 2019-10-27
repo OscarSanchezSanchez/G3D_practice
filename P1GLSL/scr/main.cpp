@@ -117,35 +117,22 @@ void keyboardFunc(unsigned char key, int x, int y)
 	{
 	case 'w': 
 		view[3].z += MOVEMENT_SPEED;
-		IGlib::setViewMat(view);
 		break;
 	case 's':
 		view[3].z -= MOVEMENT_SPEED;
-		IGlib::setViewMat(view);
 		break;
 	case 'a':
 		view[3].x += MOVEMENT_SPEED;
-		IGlib::setViewMat(view);
 		break;
 	case 'd':
 		view[3].x -= MOVEMENT_SPEED;
-		IGlib::setViewMat(view);
 		break;
-	//case 'q':
-	//	view[0].x = glm::cos(glm::radians(45.0f));
-	//	view[2].x = glm::sin(glm::radians(45.0f));
-	//	view[0].z = -glm::sin(glm::radians(45.0f));
-	//	view[2].x = glm::cos(glm::radians(45.0f));
-	//	IGlib::setViewMat(view);
-	//	break;
-	//case 'e':
-	//	view[0].x = glm::cos(glm::radians(-45.0f));
-	//	view[2].x = glm::sin(glm::radians(-45.0f));
-	//	view[0].z = -glm::sin(glm::radians(-45.0f));
-	//	view[2].x = glm::cos(glm::radians(-45.0f));
-	//	IGlib::setViewMat(view);
-	//	break;
+	case 'q':
+		break;
+	case 'e':
+		break;
 	}
+	IGlib::setViewMat(view);
 
 }
 
