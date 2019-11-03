@@ -29,7 +29,7 @@ glm::mat4 proj = glm::mat4(0.0f);
 const float MOVEMENT_SPEED = 0.1f;
 
 //Velocidad de rotación
-const float ROTATION_SPEED = 1.0f;
+const float YAW_SPEED = 0.1f;
 
 
 int main(int argc, char** argv)
@@ -113,6 +113,7 @@ void idleFunc()
 void keyboardFunc(unsigned char key, int x, int y)
 {
 	std::cout << "Se ha pulsado la tecla " << key << std::endl << std::endl;
+	glm::mat4 rotation(1.0f);
 	switch (key)
 	{
 	case 'w': 
@@ -128,8 +129,20 @@ void keyboardFunc(unsigned char key, int x, int y)
 		view[3].x -= MOVEMENT_SPEED;
 		break;
 	case 'q':
+		rotation[0].x = glm::cos(-YAW_SPEED);
+		rotation[0].z = -glm::sin(-YAW_SPEED);
+		rotation[2].x = glm::sin(-YAW_SPEED);
+		rotation[2].z = glm::cos(-YAW_SPEED);
+		view = rotation * view;
+		//view = glm::rotate(glm::mat4(1.0f), -YAW_SPEED, glm::vec3(0.0f, 1.0f, 0.0f)) * view;
 		break;
 	case 'e':
+		rotation[0].x = glm::cos(YAW_SPEED);
+		rotation[0].z = -glm::sin(YAW_SPEED);
+		rotation[2].x = glm::sin(YAW_SPEED);
+		rotation[2].z = glm::cos(YAW_SPEED);
+		view = rotation * view;
+		//view = glm::rotate(glm::mat4(1.0f), YAW_SPEED, glm::vec3(0.0f, 1.0f, 0.0f)) * view;
 		break;
 	}
 	IGlib::setViewMat(view);
