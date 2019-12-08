@@ -17,8 +17,20 @@ void keyboardFunc(unsigned char key, int x, int y);
 void mouseFunc(int button, int state, int x, int y);
 void mouseMotionFunc(int x, int y);
 
+//Matriz de vista
+//Se ajusta la camara
+//Si no se da valor se cogen valores por defecto
+glm::mat4 view = glm::mat4(1.0f);
+
 //Matriz de proyeccion
 glm::mat4 proj = glm::mat4(0.0f);
+
+//Traslación por teclado
+glm::vec3 position(0.0, 0.0, 0.0);
+float displacement = 0.1f;
+
+//Giro de cámara por teclado
+float yaw_angle = 0.01f;
 
 
 int main(int argc, char** argv)
@@ -34,14 +46,12 @@ int main(int argc, char** argv)
 	IGlib::setMouseCB(mouseFunc);
   	IGlib::setMouseMoveCB(mouseMotionFunc);
 
-	//Se ajusta la c�mara
-	//Si no se da valor se cojen valores por defecto
-	glm::mat4 view = glm::mat4(1.0f);
+	view[3].z = -20.0f;
 
-	view[3].z = -9.0f;
+	IGlib::setViewMat(view);
 
 	float n = 1.0f;
-	float f = 15.0f;
+	float f = 50.0f;
 
 	proj[0].x = 1 / glm::tan(glm::radians(30.0f));
 	proj[1].y = 1 / glm::tan(glm::radians(30.0f));
@@ -50,8 +60,6 @@ int main(int argc, char** argv)
 	proj[2].w = -1.0f;
 
 	IGlib::setProjMat(proj);
-	IGlib::setViewMat(view);
-
 
 
 	//Creamos el objeto que vamos a visualizar
@@ -107,6 +115,40 @@ void idleFunc()
 void keyboardFunc(unsigned char key, int x, int y)
 {
 	std::cout << "Se ha pulsado la tecla " << key << std::endl << std::endl;
+	glm::mat4 translation(1.0f);
+
+	glm::mat4 rotation(1.0f);
+	
+
+	switch (key)
+	{
+	case 'w': 
+		position.z += displacement;
+		break;
+	case 's':
+		position.z -= displacement;
+		break;
+	case 'a':
+		position.x += displacement;
+		break;
+	case 'd':
+		position.x -= displacement;
+		break;
+	case 'q':
+		rotation = glm::rotate(rotation, -yaw_angle, glm::vec3(0.0f, 1.0f, 0.0f));
+		view = rotation * view;
+		break;
+	case 'e':
+		rotation = glm::rotate(rotation, yaw_angle, glm::vec3(0.0f, 1.0f, 0.0f));
+		view = rotation * view;
+		break;
+	default:
+		break;
+	}
+
+	translation = glm::translate(translation, position);
+	IGlib::setViewMat(translation*view);
+
 }
 
 void mouseFunc(int button, int state, int x, int y)
