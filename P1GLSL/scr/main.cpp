@@ -25,11 +25,12 @@ glm::mat4 view = glm::mat4(1.0f);
 //Matriz de proyeccion
 glm::mat4 proj = glm::mat4(0.0f);
 
-//Velocidad de movimeinto
-const float MOVEMENT_SPEED = 0.1f;
+//Traslación por teclado
+glm::vec3 position(0.0, 0.0, 0.0);
+float displacement = 0.1f;
 
-//Velocidad de rotación
-const float YAW_SPEED = 0.1f;
+//Giro de cámara por teclado
+float yaw_angle = 0.01f;
 
 
 int main(int argc, char** argv)
@@ -113,39 +114,39 @@ void idleFunc()
 void keyboardFunc(unsigned char key, int x, int y)
 {
 	std::cout << "Se ha pulsado la tecla " << key << std::endl << std::endl;
+	glm::mat4 translation(1.0f);
+
 	glm::mat4 rotation(1.0f);
+	
+
 	switch (key)
 	{
 	case 'w': 
-		view[3].z += MOVEMENT_SPEED;
+		position.z += displacement;
 		break;
 	case 's':
-		view[3].z -= MOVEMENT_SPEED;
+		position.z -= displacement;
 		break;
 	case 'a':
-		view[3].x += MOVEMENT_SPEED;
+		position.x += displacement;
 		break;
 	case 'd':
-		view[3].x -= MOVEMENT_SPEED;
+		position.x -= displacement;
 		break;
 	case 'q':
-		rotation[0].x = glm::cos(-YAW_SPEED);
-		rotation[0].z = -glm::sin(-YAW_SPEED);
-		rotation[2].x = glm::sin(-YAW_SPEED);
-		rotation[2].z = glm::cos(-YAW_SPEED);
+		rotation = glm::rotate(rotation, -yaw_angle, glm::vec3(0.0f, 1.0f, 0.0f));
 		view = rotation * view;
-		//view = glm::rotate(glm::mat4(1.0f), -YAW_SPEED, glm::vec3(0.0f, 1.0f, 0.0f)) * view;
 		break;
 	case 'e':
-		rotation[0].x = glm::cos(YAW_SPEED);
-		rotation[0].z = -glm::sin(YAW_SPEED);
-		rotation[2].x = glm::sin(YAW_SPEED);
-		rotation[2].z = glm::cos(YAW_SPEED);
+		rotation = glm::rotate(rotation, yaw_angle, glm::vec3(0.0f, 1.0f, 0.0f));
 		view = rotation * view;
-		//view = glm::rotate(glm::mat4(1.0f), YAW_SPEED, glm::vec3(0.0f, 1.0f, 0.0f)) * view;
+		break;
+	default:
 		break;
 	}
-	IGlib::setViewMat(view);
+
+	translation = glm::translate(translation, position);
+	IGlib::setViewMat(translation*view);
 
 }
 
