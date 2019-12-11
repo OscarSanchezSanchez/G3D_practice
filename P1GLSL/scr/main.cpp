@@ -106,7 +106,7 @@ void idleFunc()
 	//translacion sobre x para desplazar el cuadrado
 	model2 = glm::translate(model2, glm::vec3(3, 0, 0));
 
-	//rotacion sobre y para simular la orbitacion del objeto
+	//rotacion sobre Y para simular la orbitacion del objeto
 	model2 = glm::rotate(model2, ang, glm::vec3(0, 1, 0));
 	IGlib::setModelMat(objId_new, model2);
 
