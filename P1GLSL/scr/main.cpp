@@ -41,7 +41,7 @@ float pitch = 0.0f;
 int main(int argc, char** argv)
 {
 	std::locale::global(std::locale("spanish"));// acentos ;)
-	if (!IGlib::init("../shaders_P1/shader.apartado4b.vert", "../shaders_P1/shader.apartado4b.frag"))
+	if (!IGlib::init("../shaders_P1/shader.apartado4a.vert", "../shaders_P1/shader.apartado4a.frag"))
 		return -1;
    
 	//CBs
@@ -88,6 +88,7 @@ int main(int argc, char** argv)
 
 void resizeFunc(int width, int height)
 {
+	//apartado 1 obligatorio
 	float aspectRatio = (float)width / (float)height;
 
 	proj[0].x = 1 / (glm::tan(glm::radians(30.0f)) * aspectRatio);
@@ -104,9 +105,10 @@ void idleFunc()
 	model = glm::rotate(model, ang, glm::vec3(1, 1, 0));
 	IGlib::setModelMat(objId, model);
 
+	//apartado 2 obligatorio
 	glm::mat4 model2(1.0f);
 	//rotacion sobre eje y
-	model2 = glm::rotate(model2, ang, glm::vec3(0, 4, -0.01));
+	model2 = glm::rotate(model2, ang, glm::vec3(0, 1, 0));
 
 	//translacion sobre x para desplazar el cuadrado
 	model2 = glm::translate(model2, glm::vec3(3, 0, 0));
