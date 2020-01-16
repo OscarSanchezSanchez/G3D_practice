@@ -12,4 +12,5 @@ void main()
 {
 	//outColor = vec4 (tc, vec2(1.0));
 	outColor = texture(colorTex,tc);
+
 }
