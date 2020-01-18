@@ -26,10 +26,9 @@ glm::mat4 view = glm::mat4(1.0f);
 glm::mat4 proj = glm::mat4(0.0f);
 
 //Traslación por teclado
-glm::vec3 position(0.0, 0.0, 0.0);
-float displacement = 0.1f;
+float displacement = 0.2f;
 //Giro de cámara por teclado
-float yaw_angle = 0.01f;
+float yaw_angle = 0.02f;
 
 //Movimiento de cámara con el ratón
 const float orbitAngle = 0.1f;
@@ -121,23 +120,22 @@ void idleFunc()
 void keyboardFunc(unsigned char key, int x, int y)
 {
 	std::cout << "Se ha pulsado la tecla " << key << std::endl << std::endl;
-	glm::mat4 translation(1.0f);
 
 	glm::mat4 rotation(1.0f);
 	
 	switch (key)
 	{
-	case 'w': 
-		position.z += displacement;
+	case 'w':
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, displacement));
 		break;
 	case 's':
-		position.z -= displacement;
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -displacement));
 		break;
 	case 'a':
-		position.x += displacement;
+		view = glm::translate(view, glm::vec3(displacement, 0.0f, 0.0f));
 		break;
 	case 'd':
-		position.x -= displacement;
+		view = glm::translate(view, glm::vec3(-displacement, 0.0f, 0.0f));
 		break;
 	case 'q':
 		rotation = glm::rotate(rotation, -yaw_angle, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -151,8 +149,7 @@ void keyboardFunc(unsigned char key, int x, int y)
 		break;
 	}
 
-	translation = glm::translate(translation, position);
-	IGlib::setViewMat(translation*view);
+	IGlib::setViewMat(view);
 
 }
 
@@ -174,6 +171,7 @@ void mouseFunc(int button, int state, int x, int y)
 
 void mouseMotionFunc(int x, int y)
 {
+
 	float xOffset = (float)x - lastX;
 	float yOffset = (float)y - lastY;
 
