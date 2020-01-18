@@ -32,6 +32,7 @@ float displacement = 0.1f;
 float yaw_angle = 0.01f;
 
 //Movimiento de cámara con el ratón
+const float orbitAngle = 0.1f;
 float lastX = 0.0f;
 float lastY = 0.0f;
 float yaw = 0.0f;
@@ -182,13 +183,7 @@ void mouseMotionFunc(int x, int y)
 	yaw += xOffset;
 	pitch += yOffset;
 
-	glm::vec3 frontVector;
-	frontVector.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-	frontVector.y = sin(glm::radians(pitch));
-	frontVector.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	view = glm::rotate(view, orbitAngle, glm::vec3(yaw, pitch, 0.0));
 
-	glm::mat4 translation(1.0f);
-	translation = glm::translate(translation, frontVector);
-
-	IGlib::setViewMat(translation * view);
+	IGlib::setViewMat(view);
 }
