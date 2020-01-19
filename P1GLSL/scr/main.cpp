@@ -34,8 +34,8 @@ float yaw_angle = 0.02f;
 const float orbitAngle = 0.1f;
 float lastX = 0.0f;
 float lastY = 0.0f;
-float yaw = 0.0f;
-float pitch = 0.0f;
+float desplX = 0.0f;
+float desplY = 0.0f;
 
 
 int main(int argc, char** argv)
@@ -43,6 +43,8 @@ int main(int argc, char** argv)
 	std::locale::global(std::locale("spanish"));// acentos ;)
 	if (!IGlib::init("../shaders_P1/shader.apartado4a.vert", "../shaders_P1/shader.apartado4a.frag"))
 		return -1;
+	//if (!IGlib::init("../shaders_P1/shader.apartado4b.vert", "../shaders_P1/shader.apartado4b.frag"))
+	//	return -1;
    
 	//CBs
 	IGlib::setResizeCB(resizeFunc);
@@ -180,10 +182,10 @@ void mouseMotionFunc(int x, int y)
 	lastX = (float)x;
 	lastY = (float)y;
 
-	yaw += xOffset;
-	pitch += yOffset;
+	desplX += xOffset;
+	desplY += yOffset;
 
-	view = glm::rotate(view, orbitAngle, glm::vec3(yaw, pitch, 0.0));
+	view = glm::rotate(view, orbitAngle, glm::vec3(desplY, desplX, 0.0));
 
 	IGlib::setViewMat(view);
 }
